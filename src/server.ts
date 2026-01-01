@@ -66,6 +66,15 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Boost Studio API is running' });
 });
 
+// Health endpoint for monitoring (UptimeRobot)
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/media', mediaRoutes);
